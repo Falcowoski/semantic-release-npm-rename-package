@@ -1,0 +1,27 @@
+{
+  "name": "@falcowoski/semantic-release-npm-rename-package",
+  "version": "1.0.0",
+  "description": "The classic and reliable @semantic-release/npm plugin, but with the ability to rename the package before publishing",
+  "main": "src/index.js",
+  "type": "module",
+  "files": [
+    "src"
+  ],
+  "repository": "https://github.com/Falcowoski/semantic-release-npm-rename-package",
+  "keywords": [
+    "npm",
+    "semantic-release"
+  ],
+  "author": "Leonardo Falcoski <leonardo.falcoski@gmail.com>",
+  "license": "MIT",
+  "packageManager": "pnpm@9.15.4",
+  "dependencies": {
+    "@semantic-release/npm": "^12.0.1"
+  },
+  "devDependencies": {
+    "semantic-release": "24.2.3"
+  },
+  "peerDependencies": {
+    "semantic-release": ">=22"
+  }
+}
