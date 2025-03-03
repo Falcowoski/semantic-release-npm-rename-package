@@ -7,7 +7,6 @@
   "files": [
     "src"
   ],
-  "repository": "https://github.com/Falcowoski/semantic-release-npm-rename-package",
   "keywords": [
     "npm",
     "semantic-release"
