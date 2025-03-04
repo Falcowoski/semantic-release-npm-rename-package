@@ -11,6 +11,9 @@
     "npm",
     "semantic-release"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Leonardo Falcoski <leonardo.falcoski@gmail.com>",
   "license": "MIT",
   "packageManager": "pnpm@9.15.4",
