@@ -34,24 +34,6 @@ const updatePackageName = (packageName, logger) => {
     }
 };
 
-const prepare = (pluginConfig, context) => {
-    const { packageName, ...restPluginConfig } = pluginConfig;
-
-    if (!packageName)
-        return npm.prepare(restPluginConfig, context);
-
-    const { logger } = context;
-
-    logger.log(`Changing package name to: ${packageName}`);
-
-    const originalPackageName = updatePackageName(packageName, logger);
-
-    if (originalPackageName !== null)
-        context.originalPackageName = originalPackageName;
-
-    return npm.prepare(restPluginConfig, context);
-};
-
 const publish = async (pluginConfig, context) => {
     const { packageName, ...restPluginConfig } = pluginConfig;
     const { logger } = context;
@@ -59,17 +41,19 @@ const publish = async (pluginConfig, context) => {
     if (!packageName)
         return npm.publish(restPluginConfig, context);
 
-    logger.log(`Publishing package with name: ${packageName}`);
+    logger.log(`Changing package name to: ${packageName}`);
+
+    const originalPackageName = updatePackageName(packageName, logger);
 
     const result = await npm.publish(restPluginConfig, context);
 
-    if (!context.originalPackageName)
+    if (!originalPackageName)
         return result;
 
-    logger.log(`Restoring original package name: ${context.originalPackageName}`);
+    logger.log(`Restoring original package name: ${originalPackageName}`);
 
     try {
-        updatePackageName(context.originalPackageName, logger);
+        updatePackageName(originalPackageName, logger);
         logger.log('Original package name restored successfully');
     } catch (error) {
         logger.error('Error restoring original package name:', error);
@@ -79,4 +63,4 @@ const publish = async (pluginConfig, context) => {
     return result;
 };
 
-export default { ...npm, prepare, publish };
+export default { ...npm, publish };
