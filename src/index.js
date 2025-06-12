@@ -6,7 +6,13 @@ import { saveOriginalPackageJson } from './utils/saveOriginalPackageJson';
 import { restoreOriginalPackageJson } from './utils/restoreOriginalPackageJson';
 
 const publish = async (pluginConfig, context) => {
-    const { packageName, dependencyMappings, ...restPluginConfig } = pluginConfig;
+    const { 
+        packageName, 
+        dependencyMappings,
+        hasLegacyPeerDependenciesFlag,
+        ...restPluginConfig
+    } = pluginConfig;
+
     const { logger } = context;
 
     // If no customizations needed, use default npm publish
@@ -29,7 +35,7 @@ const publish = async (pluginConfig, context) => {
         );
 
         if (updatedDependencies.length > 0)
-            installDependencies(logger);
+            installDependencies(logger, hasLegacyPeerDependenciesFlag);
 
         logger.log('Publishing package with updated configuration...');
 
@@ -49,7 +55,7 @@ const publish = async (pluginConfig, context) => {
                 
                 if (dependencyMappings && dependencyMappings.length > 0) {
                     logger.log('Running npm install to restore original dependencies...');
-                    installDependencies(logger);
+                    installDependencies(logger, hasLegacyPeerDependenciesFlag);
                 }
             } catch (restoreError) {
                 logger.error('Error restoring original state:', restoreError);
