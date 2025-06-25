@@ -10,7 +10,7 @@ const DEPENDENCY_TYPES = [
  * @param {Object} logger
  * @returns {string[]}
  */
-const updateDependencies = (packageJson, dependencyMappings, logger) => {    
+export const updateDependencies = (packageJson, dependencyMappings, logger) => {    
     const updatedDependencyNames = dependencyMappings.map(([originalDependencyName, newDependencyName]) => {
         // Example:
         // input: @repo/snow-eagle-core (originalDependencyName)
