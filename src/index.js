@@ -1,9 +1,9 @@
 import * as npm from '@semantic-release/npm';
 import path from 'path';
-import { updatePackageJsonForPublish } from './utils/updatePackageJsonForPublish';
-import { installDependencies } from './utils/installDependencies';
-import { saveOriginalPackageJson } from './utils/saveOriginalPackageJson';
-import { restoreOriginalPackageJson } from './utils/restoreOriginalPackageJson';
+import { updatePackageJsonForPublish } from './utils/updatePackageJsonForPublish.js';
+import { installDependencies } from './utils/installDependencies.js';
+import { saveOriginalPackageJson } from './utils/saveOriginalPackageJson.js';
+import { restoreOriginalPackageJson } from './utils/restoreOriginalPackageJson.js';
 
 const publish = async (pluginConfig, context) => {
     const { 
