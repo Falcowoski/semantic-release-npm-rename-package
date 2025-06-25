@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { updateDependencies } from './updateDependencies.js';
 
 /**
  * @param {string} packageName
