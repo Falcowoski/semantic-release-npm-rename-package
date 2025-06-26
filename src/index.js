@@ -4,6 +4,7 @@ import { updatePackageJsonForPublish } from './utils/updatePackageJsonForPublish
 import { installDependencies } from './utils/installDependencies.js';
 import { saveOriginalPackageJson } from './utils/saveOriginalPackageJson.js';
 import { restoreOriginalPackageJson } from './utils/restoreOriginalPackageJson.js';
+import { rewriteSourceImports } from './utils/rewriteSourceImports.js';
 
 const publish = async (pluginConfig, context) => {
     const { 
@@ -34,8 +35,10 @@ const publish = async (pluginConfig, context) => {
             logger
         );
 
-        if (updatedDependencies.length > 0)
+        if (updatedDependencies.length > 0) {
             installDependencies(logger, hasLegacyPeerDependenciesFlag);
+            await rewriteSourceImports(logger, updatedDependencies, dependencyMappings)
+        }
 
         logger.log('Publishing package with updated configuration...');
 

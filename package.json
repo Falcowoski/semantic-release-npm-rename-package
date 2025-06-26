@@ -18,7 +18,8 @@
   "license": "MIT",
   "packageManager": "pnpm@9.15.4",
   "dependencies": {
-    "@semantic-release/npm": "^12.0.1"
+    "@semantic-release/npm": "^12.0.1",
+    "fast-glob": "^3.3.3"
   },
   "devDependencies": {
     "semantic-release": "24.2.3"

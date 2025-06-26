@@ -11,6 +11,9 @@ importers:
       '@semantic-release/npm':
         specifier: ^12.0.1
         version: 12.0.1(semantic-release@24.2.3)
+      fast-glob:
+        specifier: ^3.3.3
+        version: 3.3.3
     devDependencies:
       semantic-release:
         specifier: 24.2.3
