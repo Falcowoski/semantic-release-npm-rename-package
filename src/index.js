@@ -5,6 +5,7 @@ import { installDependencies } from './utils/installDependencies.js';
 import { saveOriginalPackageJson } from './utils/saveOriginalPackageJson.js';
 import { restoreOriginalPackageJson } from './utils/restoreOriginalPackageJson.js';
 import { rewriteSourceImports } from './utils/rewriteSourceImports.js';
+import { restoreSourceImports } from './utils/restoreSourceImports.js';
 
 const publish = async (pluginConfig, context) => {
     const { 
@@ -59,6 +60,7 @@ const publish = async (pluginConfig, context) => {
                 if (dependencyMappings && dependencyMappings.length > 0) {
                     logger.log('Running npm install to restore original dependencies...');
                     installDependencies(logger, hasLegacyPeerDependenciesFlag);
+                    await restoreSourceImports(logger, updatedDependencies, dependencyMappings)
                 }
             } catch (restoreError) {
                 logger.error('Error restoring original state:', restoreError);
